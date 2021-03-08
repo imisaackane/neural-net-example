@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script src="NNet.js"></script> 
+        <script src="Graphics.js"></script>
+        <script src="Controller.js"></script>
+    </head>
+    <body>
+        <canvas id="canvas"  width = "1000" height = "600">
+        </canvas>
+        <button onclick = "setOutputArr('OR');" class = "pressed">OR</button>
+        <button onclick = "setOutputArr('AND')">AND</button>
+        <button onclick = "setOutputArr('XOR')">XOR</button>
+        <button onclick = "setOutputArr('NAND')">NAND</button>
+        <button onclick = "startStop()">Start/Stop</button>
+        <script>
+            var animate = false;
+            var myNet;
+            var inputNodes;
+            var selectedNode = null;
+            var inputArr = [0,0];
+            var outputArr = [0];
+            var type = 'OR';
+
+            
+            window.onload = function() {
+                myNet = new Net();
+                myNet.buildFromString("{2, 3, 1}");
+
+                initGraphics();
+                initController(canvas, myNet);
+
+                inputNodes = myNet.nodes[0]
+                for(inputNode of inputNodes){
+                    inputNode.bias = 0;
+                    inputNode.value = 0;
+                }
+                
+                drawNet(myNet);
+            }
+        </script>
+    </body>
+</html>
