@@ -1,1 +1,3 @@
-# nueral-net-example
+# neural-net-example
+
+An Example neural net written in javascript.
